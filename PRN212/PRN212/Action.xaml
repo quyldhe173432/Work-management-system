@@ -1,0 +1,69 @@
+﻿<Window x:Class="PRN212.Action"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRN212"
+        mc:Ignorable="d"
+        Title="Action" Height="450" Width="650">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top bar with username and logout button -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10">
+            <TextBlock Text="Welcome, " Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding CustomerName}" Foreground="DarkSlateGray" FontWeight="Bold" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- DataGrid to display tasks -->
+        <DataGrid x:Name="dataGridTasks" AutoGenerateColumns="False" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ActionId}" Width="50"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding ActionName}" Width="150"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding ActionDescription}" Width="200"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding DateAction}" Width="100"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding TimeAction}" Width="100"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding StatusName}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Buttons to add, update, delete tasks -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="10">
+            <Button Content="ADD" Width="100" Click="btnAdd_Click"/>
+            <Button Content="UPDATE" Width="100" Click="btnUpdate_Click"/>
+            <Button Content="CLOSE" Width="100" Click="btnClose_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
